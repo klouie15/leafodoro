@@ -1,1 +1,5 @@
-We wanted to have a way to study together on discord efficiently using the Pomodoro technique.  Adding the discord bot to your server allows you to add commands for it to set a timer and remind you when to study and when you should take a break. We used Discord python framework to interact with its API to read commands and used the time Library to know when to remind users. We couldn't get all that we wanted done as there were a few features that were a bit too complicated to implement such as playing sounds to remind users. However, we are still very proud of our project. Learning the library on the spot, as well as setting up a timer was a challenge, but it was worth it. Going through the project, we learned how to work better as a team and plan out our projects better as we were familiar with python. 
+To replicate;
+1. upload the files on to "Repl.it".
+2. Go on the Discord developer portal and create a bot
+3. Copy the bot token and put in the secrets section of the Repl.
+
