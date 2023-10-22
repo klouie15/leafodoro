@@ -24,7 +24,7 @@ timerOff = True
 
 
 # Create a function to get the bot to join the vc
-@bot.command()
+@bot.command(name='join', help='Joins the voice call you are in')
 async def join(ctx):
   if ctx.author.voice:
     await ctx.send('You are in the voice channel')
@@ -50,7 +50,7 @@ async def join(ctx):
 
 
 # Create a function to get the bot to leave the vc
-@bot.command()
+@bot.command(name = 'leave', help='Leaves the current call')
 async def leave(ctx):
   if ctx.voice_client:
     await ctx.send('I am in voice')
@@ -60,7 +60,7 @@ async def leave(ctx):
 
 
 # General purpose timer used for both the remind and pomodoro commands
-@bot.command()
+@bot.command(name = 'timer', help = 'internal timer')
 async def timer(ctx, days, hrs, mins):
   end = int(days) * 86400 + int(hrs) * 3600 + int(mins) * 60
   await asyncio.sleep(end)
@@ -69,7 +69,7 @@ async def timer(ctx, days, hrs, mins):
 
 
 # Set a reminder that pings the user after a certain timeframe
-@bot.command()
+@bot.command(name = 'reminder', help = 'reminds you of an activity by pinging you. Inputs are days, hours, minutes, then the activity')
 async def remind(ctx, days, hrs, mins, activity):
   await ctx.send("Reminder set for " + activity + " in " + days + " days, " +
                  hrs + " hours, " + mins + " minutes, ")
@@ -77,7 +77,7 @@ async def remind(ctx, days, hrs, mins, activity):
   await ctx.send(f"{ctx.author.mention} Reminder for **{activity}**")
 
 
-@bot.command()
+@bot.command(name = 'pomodoroStart', help = 'Starts a pomodoro session until told to stop. 1st value is study time, second is rest time in minutes')
 async def pomodoroStart(ctx, minsStudy, minsBreak):
   await join(ctx)
   await ctx.send(f"Timer started! You have {minsStudy} minutes to study!")
@@ -95,7 +95,7 @@ async def pomodoroStart(ctx, minsStudy, minsBreak):
       await timer(ctx, 0, 0, minsStudy)
 
 
-@bot.command()
+@bot.command(name = 'pomodoroStop', help = 'Stops current pomodoro session')
 async def pomodoroEnd(ctx):
   global stopPomodoro
   stopPomodoro = False
@@ -103,14 +103,14 @@ async def pomodoroEnd(ctx):
 
 
 # Adds an activity to the to-do list
-@bot.command()
+@bot.command(name = 'addtodo', help = 'Adds an item to the to do list')
 async def addtodo(ctx, *, args):
   toDoList.append(args)
   await ctx.send(f"Added **{args}** to the to-do list")
 
 
 # Removes the desired activity from the to-do list, error if it does not exist
-@bot.command()
+@bot.command(name = 'removetodo', help = 'Removes an item from todo list')
 async def removetodo(ctx, *, args):
   idx_to_remove = -1
 
@@ -126,7 +126,7 @@ async def removetodo(ctx, *, args):
 
 
 # Prints the items in the to-do list in the order they were added
-@bot.command()
+@bot.command(name = 'todo', help = 'Shows your to do list!')
 async def todo(ctx):
   if len(toDoList) == 0:
     await ctx.send("There are no items in your to-do list")
